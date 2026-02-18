@@ -1,0 +1,11 @@
+semantic-release:
+  stage: versioning
+  image: node:20-alpine
+  before_script:
+    - apk add --no-cache git
+  script:
+    - npm ci
+    - npx semantic-release
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^(dev|main)$/
+
